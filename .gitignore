@@ -11,5 +11,16 @@ pcb*/**/*.xml
 pcb*/**/out/
 pcb/rev*~*/ 
 
+## Quartus
+db/
+incremental_db/
+output/
+*.dpf
+*.cdf
+*.qws
+*.srf
+cpld/*/simulation/
+cpld.*/
+
 ## Etc.
 refs/
