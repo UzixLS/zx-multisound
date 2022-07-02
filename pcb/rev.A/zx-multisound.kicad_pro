@@ -55,7 +55,29 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "courtyards_overlap|163583319|93546953|461c098d-5ef2-4710-b7e7-1b4cac04eb98|fc1882ae-cdb2-421f-84ed-e41643a40ced",
+        "courtyards_overlap|163705626|94550001|00000000-0000-0000-0000-00005fd016b3|fc1882ae-cdb2-421f-84ed-e41643a40ced",
+        "courtyards_overlap|164662081|93150001|00000000-0000-0000-0000-00005fd016b3|461c098d-5ef2-4710-b7e7-1b4cac04eb98",
+        "courtyards_overlap|164744951|92174022|461c098d-5ef2-4710-b7e7-1b4cac04eb98|9ff37779-3212-44d7-9b38-1d22c63fa32b",
+        "courtyards_overlap|166342910|93150001|00000000-0000-0000-0000-00005fd016b3|9ff37779-3212-44d7-9b38-1d22c63fa32b",
+        "courtyards_overlap|166626121|92771412|06f1fc50-2841-4bab-80ec-68776c4bfdf6|9ff37779-3212-44d7-9b38-1d22c63fa32b",
+        "courtyards_overlap|168261854|93150001|00000000-0000-0000-0000-00005fd016b3|06f1fc50-2841-4bab-80ec-68776c4bfdf6",
+        "courtyards_overlap|202926317|92700001|00000000-0000-0000-0000-00005ec1f80d|3ad0db26-6b44-4a8c-ad53-445999de0de5",
+        "courtyards_overlap|66699999|109599999|094b1503-68cb-424b-8a3b-da2750fc7a33|fee05b16-e5da-4916-9432-2d6fce15fe61",
+        "courtyards_overlap|68500001|109550001|00000000-0000-0000-0000-00005fc138df|fee05b16-e5da-4916-9432-2d6fce15fe61",
+        "courtyards_overlap|72349999|106000001|c4774041-3d4f-40a6-a651-ffc25168064d|fee05b16-e5da-4916-9432-2d6fce15fe61",
+        "courtyards_overlap|73400001|109550001|00000000-0000-0000-0000-00005fc13a65|fee05b16-e5da-4916-9432-2d6fce15fe61",
+        "courtyards_overlap|76174999|86050001|00000000-0000-0000-0000-00005fa439c3|00000000-0000-0000-0000-00005fa44a08",
+        "track_dangling|181400000|76400000|65ef1b5d-7b1e-400c-9667-3851e2594a4a|00000000-0000-0000-0000-000000000000",
+        "track_dangling|190800000|124900000|139ec115-167f-45c1-a65b-6816b2444071|00000000-0000-0000-0000-000000000000",
+        "track_dangling|199000000|124900000|d3675bc6-86d9-4bc2-900a-cee7a520ff50|00000000-0000-0000-0000-000000000000",
+        "track_dangling|59900000|82350000|33a1b206-0737-4d3b-9ac5-5962d36acfb1|00000000-0000-0000-0000-000000000000",
+        "track_dangling|62850000|78750000|68724279-4976-4721-9254-12b06eee99fe|00000000-0000-0000-0000-000000000000",
+        "track_dangling|69875000|76075000|40465969-1e53-4863-a774-b332373cca4d|00000000-0000-0000-0000-000000000000",
+        "track_dangling|71127500|82327500|3b7b13e7-10e9-4ed0-9a28-f06e77bc92a2|00000000-0000-0000-0000-000000000000",
+        "track_dangling|81600000|73575000|3dfbffe7-fc34-46e9-88ff-4984106d95d7|00000000-0000-0000-0000-000000000000"
+      ],
       "meta": {
         "filename": "board_design_settings.json",
         "version": 2
@@ -86,8 +108,8 @@
         "padstack": "error",
         "pth_inside_courtyard": "ignore",
         "shorting_items": "error",
-        "silk_over_copper": "warning",
-        "silk_overlap": "warning",
+        "silk_over_copper": "ignore",
+        "silk_overlap": "ignore",
         "skew_out_of_range": "error",
         "through_hole_pad_without_hole": "error",
         "too_many_vias": "error",
