@@ -33,9 +33,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 3.0,
-          "height": 3.0,
-          "width": 3.0
+          "drill": 2.7,
+          "height": 4.7,
+          "width": 4.7
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -418,7 +418,6 @@
         "nets": [
           "+12V",
           "+3.3VA",
-          "+3V3",
           "+5V",
           "+5VA",
           "GND"
