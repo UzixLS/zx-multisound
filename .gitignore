@@ -9,7 +9,7 @@
 pcb*/**/*-backups/
 pcb*/**/*.xml
 pcb*/**/out/
-pcb/rev*~*/ 
+pcb/rev*~*/
 
 ## Quartus
 db/
@@ -19,8 +19,16 @@ output/
 *.cdf
 *.qws
 *.srf
-cpld/*/simulation/
+cpld/tb/work/
+cpld/tb/*.vcd
+cpld/tb/*.gtkw
+cpld/tb/*_pwl.txt
+cpld/tb/*.raw
+cpld/tb/*.net
+cpld/tb/*.log
+cpld/tb/111.txt
 cpld.*/
 
 ## Etc.
 refs/
+test/
