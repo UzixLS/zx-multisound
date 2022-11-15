@@ -16,15 +16,15 @@
 #
 # -------------------------------------------------------------------------- #
 #
-# Quartus II 64-Bit
+# Quartus II 32-bit
 # Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
-# Date created = 12:04:27  October 04, 2020
+# Date created = 11:12:50  November 18, 2022
 #
 # -------------------------------------------------------------------------- #
 
 QUARTUS_VERSION = "13.0"
-DATE = "12:04:27  October 04, 2020"
+DATE = "11:12:50  November 18, 2022"
 
 # Revisions
 
-PROJECT_REVISION = "zx_multisound"
+PROJECT_REVISION = "rev_A"
