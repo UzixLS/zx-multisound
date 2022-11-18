@@ -27,4 +27,5 @@ DATE = "11:12:50  November 18, 2022"
 
 # Revisions
 
+PROJECT_REVISION = "rev_A1"
 PROJECT_REVISION = "rev_A"
