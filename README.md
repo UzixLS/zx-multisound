@@ -7,7 +7,7 @@ Sound card for ZX Spectrum (NemoBus).
 
 ### Tech specs
 * TurboSound FM (2xYM2203)
-* General Sound (12MHz, 1024Kb of RAM)
+* General Sound (16MHz, 1024Kb of RAM)
 * SAA1099 (use port #FF/#1FF to access SAA chip, write #F7/#FF to #FFFD port to enable/disable SAA)
 * SounDrive (ports #0F, #1F, #4F, #5F)
 * MIDI (controlled via YM(AY) chip - compatible with ZX Spectrum 128K / ZXUNO)

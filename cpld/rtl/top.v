@@ -83,6 +83,19 @@ wire gs_ena  = cfg[2];
 wire sd_ena  = cfg[3];
 
 
+/* CLOCKS */
+reg [5:0] clk3_5_cnt = 0;
+reg [1:0] clk8_cnt   = 0;
+reg [2:0] clk12_cnt  = 0;
+always @(posedge clk32) clk3_5_cnt <= clk3_5_cnt + 6'd7;
+always @(posedge clk32) clk8_cnt   <= clk8_cnt   + 1'b1;
+always @(posedge clk32) clk12_cnt  <= clk12_cnt  + 3'd3;
+wire clk3_5 = clk3_5_cnt[5];
+wire clk8   = clk8_cnt[1];
+wire clk12  = clk12_cnt[2];
+wire clk16  = clk8_cnt[0];
+
+
 /* TURBO SOUND FM */
 wire port_bffd      = a[15:14] == 2'b10  && a[1:0] == 2'b01 && ym_ena;
 wire port_fffd      = a[15:14] == 2'b11  && a[1:0] == 2'b01 && ym_ena;
@@ -107,11 +120,7 @@ always @(posedge clk32 or negedge rst_n) begin
     end
 end
 
-reg [5:0] ym_m_cnt = 0;
-assign ym_m = ym_m_cnt[5];
-always @(posedge clk32) begin
-    ym_m_cnt <= ym_m_cnt + 6'd7;
-end
+assign ym_m = clk3_5;
 
 
 /* SAA1099 */
@@ -128,28 +137,20 @@ always @(posedge clk32 or negedge rst_n) begin
         saa_clk_en <= ~d[3];
 end
 
-reg [1:0] saa_clk_cnt = 0;
-assign saa_clk = saa_clk_en? saa_clk_cnt[1] : 1'b0;
-always @(posedge clk32) begin
-    saa_clk_cnt <= saa_clk_cnt + 1'b1;
-end
+assign saa_clk = saa_clk_en? clk8 : 1'b0;
 
 
 /* MIDI */
-reg [2:0] midi_clk_cnt = 0;
-assign midi_clk = midi_clk_cnt[2];
-always @(posedge clk32) begin
-    midi_clk_cnt <= midi_clk_cnt + 3'd3;
-end
+assign midi_clk = clk12;
 
 
 /* GENERAL SOUND */
-assign gclk = midi_clk;
+assign gclk = clk16;
 assign n_grst = n_rstout;
 
 reg [8:0] g_int_cnt;
 wire g_int_reload = g_int_cnt[8:6] == 4'b101;
-always @(posedge gclk or negedge rst_n) begin
+always @(posedge clk12 or negedge rst_n) begin
     if (!rst_n) begin
         g_int_cnt <= 0;
         n_gint <= 1'b1;
