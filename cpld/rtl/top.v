@@ -169,33 +169,33 @@ always @(posedge clk12 or negedge rst_n) begin
 end
 
 /* GS EXTERNAL REGISTERS */
-reg [7:0] gs_regb3, gs_regbb;
+reg [7:0] gs_regdata, gs_regcmd;
 wire port_b3 = a[7:0] == 8'hB3 && gs_ena;
 wire port_bb = a[7:0] == 8'hBB && gs_ena;
 always @(posedge clk32 or negedge rst_n) begin
     if (!rst_n) begin
-        gs_regb3 <= 0;
-        gs_regbb <= 0;
+        gs_regdata <= 0;
+        gs_regcmd <= 0;
     end
     else begin
         if (port_b3 && ioreq_wr)
-            gs_regb3 <= d;
+            gs_regdata <= d;
         if (port_bb && ioreq_wr)
-            gs_regbb <= d;
+            gs_regcmd <= d;
     end
 end
 
 /* GS INTERNAL REGISTERS */
-reg [7:0] gs_reg00, gs_reg03;
+reg [7:0] gs_reg00, gs_reg_out;
 wire [5:0] gs_page = gs_reg00[5:0];
 always @(posedge clk32 or negedge rst_n) begin
     if (!rst_n) begin
         gs_reg00 <= 0;
-        gs_reg03 <= 0;
+        gs_reg_out <= 0;
     end
     else if (~n_giorq && ~n_gwr) begin
         if (ga[3:0] == 4'h0) gs_reg00 <= gd;
-        if (ga[3:0] == 4'h3) gs_reg03 <= gd;
+        if (ga[3:0] == 4'h3) gs_reg_out <= gd;
     end
 end
 
@@ -246,8 +246,8 @@ assign n_gram2 = (~n_gmreq && n_grom &&   gs_page[4] &&  ga[15] )? 1'b0 : 1'b1;
 assign gma = (ga[15] == 1'b0)? 4'b0001 : gs_page[3:0];
 assign gd =
     (~n_giorq && ~n_grd && ga[3:0] == 4'h4)? gs_status :
-    (~n_giorq && ~n_grd && ga[3:0] == 4'h2)? gs_regb3 :
-    (~n_giorq && ~n_grd && ga[3:0] == 4'h1)? gs_regbb :
+    (~n_giorq && ~n_grd && ga[3:0] == 4'h2)? gs_regdata :
+    (~n_giorq && ~n_grd && ga[3:0] == 4'h1)? gs_regcmd :
     (~n_giorq && (~n_grd || ~n_gm1))?        {8{1'b1}} :
                                              {8{1'bz}} ;
 
@@ -337,7 +337,7 @@ assign n_wait = 1'bz;
 assign n_iorqge = (n_m1 && (port_fffd_full || port_bffd || port_b3 || port_bb || port_ff || port_xf))? 1'b0 : 1'b1;
 assign d =
     ioreq_rd && port_fffd? ad :
-    ioreq_rd && port_b3? gs_reg03 :
+    ioreq_rd && port_b3? gs_reg_out :
     ioreq_rd && port_bb? gs_status :
     8'bzzzzzzzz;
 
