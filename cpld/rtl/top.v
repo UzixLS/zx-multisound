@@ -45,6 +45,8 @@ module zx_multisound(
     output n_grom,
     output n_gram1,
     output n_gram2,
+    output n_gram3,
+    output n_gram4,
     output [18:15] gma,
 
     output dac0_out,
@@ -193,7 +195,7 @@ end
 
 /* GS INTERNAL REGISTERS */
 reg [7:0] gs_reg00, gs_reg_out;
-wire [5:0] gs_page = gs_reg00[5:0];
+wire [6:0] gs_page = gs_reg00[6:0];
 always @(posedge clk32 or negedge rst_n) begin
     if (!rst_n) begin
         gs_reg00 <= 0;
@@ -255,8 +257,17 @@ end
 
 /* GS BUS CONTROLLER */
 assign n_grom = (~n_gmreq && ((ga[15:14] == 2'b00) || (ga[15] && gs_page == 0)))? 1'b0 : 1'b1;
-assign n_gram1 = (~n_gmreq && n_grom && (~gs_page[4] || ~ga[15]))? 1'b0 : 1'b1;
-assign n_gram2 = (~n_gmreq && n_grom &&   gs_page[4] &&  ga[15] )? 1'b0 : 1'b1;
+`ifdef GS_RAM_2MB
+    assign n_gram1 = (~n_gmreq && n_grom && ((gs_page[5:4] == 2'd0) || ~ga[15]))? 1'b0 : 1'b1;
+    assign n_gram2 = (~n_gmreq && n_grom &&  (gs_page[5:4] == 2'd1) &&  ga[15] )? 1'b0 : 1'b1;
+    assign n_gram3 = (~n_gmreq && n_grom &&  (gs_page[5:4] == 2'd2) &&  ga[15] )? 1'b0 : 1'b1;
+    assign n_gram4 = (~n_gmreq && n_grom &&  (gs_page[5:4] == 2'd3) &&  ga[15] )? 1'b0 : 1'b1;
+`else
+    assign n_gram1 = (~n_gmreq && n_grom && (~gs_page[4] || ~ga[15]))? 1'b0 : 1'b1;
+    assign n_gram2 = (~n_gmreq && n_grom &&   gs_page[4] &&  ga[15] )? 1'b0 : 1'b1;
+    assign n_gram3 = 1'b1;
+    assign n_gram4 = 1'b1;
+`endif
 assign gma = (ga[15] == 1'b0)? 4'b0001 : gs_page[3:0];
 assign gd =
     (~n_giorq && ~n_grd && ga[3:0] == 4'h4)? gs_status :

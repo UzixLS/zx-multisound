@@ -103,6 +103,9 @@ set_location_assignment PIN_60 -to dac3_out
 set_location_assignment PIN_61 -to dac2_out
 set_location_assignment PIN_62 -to dac1_out
 set_location_assignment PIN_63 -to dac0_out
+set_location_assignment PIN_70 -to n_gram4
+set_location_assignment PIN_71 -to n_gram3
+set_location_assignment PIN_72 -to n_mreq
 set_location_assignment PIN_74 -to fm1_ena
 set_location_assignment PIN_75 -to ym_m
 set_location_assignment PIN_78 -to aa0
@@ -158,7 +161,6 @@ set_location_assignment PIN_140 -to a[8]
 set_location_assignment PIN_141 -to a[9]
 set_location_assignment PIN_142 -to a[10]
 set_location_assignment PIN_143 -to a[11]
-set_location_assignment PIN_72 -to n_mreq
 set_global_assignment -name MAX7000_OPTIMIZATION_TECHNIQUE BALANCED
 set_global_assignment -name PRE_MAPPING_RESYNTHESIS OFF
 set_global_assignment -name OPTIMIZE_HOLD_TIMING OFF
