@@ -10,14 +10,14 @@ Sound card for ZX Spectrum (NemoBus).
 * General Sound (16MHz, 1024Kb of RAM)
 * SAA1099 (use port #FF/#1FF to access SAA chip, write #F7/#FF to #FFFD port to enable/disable SAA)
 * SounDrive (ports #0F, #1F, #4F, #5F)
-* MIDI (controlled via YM(AY) chip - compatible with ZX Spectrum 128K / ZXUNO)
+* MIDI synthesizer (controlled via YM(AY) chip - compatible with ZX Spectrum 128K / ZXUNO)
 * Low profile PCB: 170x64mm
 * 5V and 12V power required
 * 4x 1-bit digital DACs for GS and SounDrive
 
 ### Changelog & current status
 * Rev.A - first release. Please note the [errata](pcb/rev.A/ERRATA.txt);
-* Rev.A1 - fixed all rev.A issues. This revision hasn't been tested.
+* Rev.A1 - fixed all rev.A issues.
 
 Sound card has been tested only with ZX Evolution. You can use it with another computer at your own risk.
 
