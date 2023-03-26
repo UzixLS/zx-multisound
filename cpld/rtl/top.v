@@ -105,9 +105,9 @@ wire clk16  = clk8_cnt[0];
 
 
 /* TURBO SOUND FM */
-wire port_bffd      = a[15:14] == 2'b10  && a[1:0] == 2'b01 && ym_ena;
-wire port_fffd      = a[15:14] == 2'b11  && a[1:0] == 2'b01 && ym_ena;
-wire port_fffd_full = a[15:13] == 3'b111 && a[1:0] == 2'b01 && ym_ena; // required for compatibility with #dffd port
+wire port_bffd      = a[15:14] == 2'b10  && a[3:0] == 4'b1101 && ym_ena;
+wire port_fffd      = a[15:14] == 2'b11  && a[3:0] == 4'b1101 && ym_ena;
+wire port_fffd_full = a[15:13] == 3'b111 && a[3:0] == 4'b1101 && ym_ena; // required for compatibility with #dffd port
 reg ym_chip_sel, ym_get_stat;
 wire ym_a0 = (~n_rd & a[14] & ~ym_get_stat) | (~n_wr & ~a[14]);
 assign n_ym1_cs = ~(~ym_chip_sel && (port_bffd || port_fffd));
@@ -136,7 +136,7 @@ wire port_ff = a[7:0] == 8'hFF && saa_ena && !rom_m1_access;
 assign n_saa_cs = ~(port_ff && ioreq_wr);
 wire saa_a0 = a[8];
 
-wire port_fffd_saa = a[15:14] == 2'b11 && a[1:0] == 2'b01 && saa_ena;
+wire port_fffd_saa = a[15:14] == 2'b11 && a[3:0] == 4'b1101 && saa_ena;
 reg saa_clk_en;
 always @(posedge clk32 or negedge rst_n) begin
     if (!rst_n)
