@@ -59,8 +59,9 @@ assign n_rstout = rst_n;
 
 // n_iorq are useless in zxevo :(
 // so we're detecting n_iorq cycle by n_rd/n_wr signal asserted without n_m1/n_mreq
-reg ioreq;
+reg ioreq, ioreq_prev;
 always @(negedge clk32) begin
+    ioreq_prev <= ioreq;
     // ioreq <= n_iorq == 1'b0 && n_m1 == 1'b1 && n_dos == 1'b1 && n_iodos == 1'b1;
     ioreq <= n_m1 == 1'b1 && n_mreq == 1'b1 && (n_rd == 1'b0 || n_wr == 1'b0);
 end
@@ -77,11 +78,6 @@ always @(negedge clk32 or negedge rst_n) begin
         rom_m1_access <= a[15:14] == 2'b00;
 end
 
-reg n_rd_wr_delayed, n_rd_wr_delayed1;
-always @(posedge clk32) begin
-    n_rd_wr_delayed <= n_rd_wr_delayed1;
-    n_rd_wr_delayed1 <= n_wr & n_rd;
-end
 
 
 /* CONFIGURATION */
@@ -155,6 +151,12 @@ assign midi_clk = clk12;
 /* GENERAL SOUND */
 assign gclk = clk16;
 assign n_grst = n_rstout;
+
+reg gioreq, gioreq_prev;
+always @(posedge clk32) begin
+    gioreq_prev <= gioreq;
+    gioreq <= n_giorq == 1'b0 && n_gm1 == 1'b1;
+end
 
 reg [8:0] g_int_cnt;
 wire g_int_reload = g_int_cnt[8:6] == 4'b101;
@@ -232,26 +234,26 @@ wire [7:0] gs_status = {gs_flag_data, 6'b111111, gs_flag_cmd};
 always @(posedge clk32 or negedge rst_n) begin
     if (!rst_n)
         gs_flag_data <= 1'b0;
-    else if (~n_iorq && ~n_rd && n_rd_wr_delayed && port_b3)
+    else if (ioreq_rd && !ioreq_prev && port_b3)
         gs_flag_data <= 1'b0;
-    else if (~n_iorq && ~n_wr && n_rd_wr_delayed && port_b3)
+    else if (ioreq_wr && !ioreq_prev && port_b3)
         gs_flag_data <= 1'b1;
-    else if (~n_giorq && n_gm1 && ga[3:0] == 4'h2)
+    else if (gioreq && !gioreq_prev && ga[3:0] == 4'h2)
         gs_flag_data <= 1'b0;
-    else if (~n_giorq && n_gm1 && ga[3:0] == 4'h3)
+    else if (gioreq && !gioreq_prev && ga[3:0] == 4'h3)
         gs_flag_data <= 1'b1;
-    else if (~n_giorq && n_gm1 && ga[3:0] == 4'hA)
+    else if (gioreq && !gioreq_prev && ga[3:0] == 4'hA)
         gs_flag_data <= ~gs_reg00[0];
 end
 
 always @(posedge clk32 or negedge rst_n) begin
     if (!rst_n)
         gs_flag_cmd <= 1'b0;
-    else if (~n_iorq && ~n_wr && n_rd_wr_delayed && port_bb)
+    else if (ioreq_wr && !ioreq_prev && port_bb)
         gs_flag_cmd <= 1'b1;
-    else if (~n_giorq && n_gm1 && ga[3:0] == 4'h5)
+    else if (gioreq && !gioreq_prev && ga[3:0] == 4'h5)
         gs_flag_cmd <= 1'b0;
-    else if (~n_giorq && n_gm1 && ga[3:0] == 4'hB)
+    else if (gioreq && !gioreq_prev && ga[3:0] == 4'hB)
         gs_flag_cmd <= vol3[5];
 end
 
