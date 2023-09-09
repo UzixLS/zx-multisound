@@ -1,3 +1,7 @@
 1. Missing MREQ signal. You should wire MREQ from edge connector to TP1
 2. R2, R33 - 10K
 3. R6, R12, R30, R31 - 47k
+
+UPD. 2023-08-21:
+4. R20 and R34 labels on silkscreen are misplaced
+5. Incorrect 3.5mm jack footprint - left-right signals are swapped

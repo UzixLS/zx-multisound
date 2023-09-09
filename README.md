@@ -17,7 +17,7 @@ Sound card for ZX Spectrum (NemoBus).
 
 ### Changelog & current status
 * Rev.A - first release. Please note the [errata](pcb/rev.A/ERRATA.txt);
-* Rev.A1 - fixed all rev.A issues.
+* Rev.A1 - fixed known rev.A issues. Please note the [errata](pcb/rev.A1/ERRATA.txt).
 
 Sound card has been tested only with ZX Evolution. You can use it with another computer at your own risk.
 

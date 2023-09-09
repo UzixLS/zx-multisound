@@ -1,0 +1,2 @@
+1. R20 and R34 lables on silkscreen are misplaced
+2. Incorrect 3.5mm jack footprint - left-right signals are swapped
