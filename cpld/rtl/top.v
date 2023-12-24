@@ -361,7 +361,7 @@ assign aa0 = a[1]? saa_a0 : ym_a0 ;
 assign ad = ioreq_wr && (port_fffd || port_bffd || port_ff)? d : 8'bzzzzzzzz;
 
 assign n_wait = 1'bz;
-assign n_iorqge = (n_m1 && (port_fffd_full || port_bffd || port_b3 || port_bb || port_ff || port_xf))? 1'b0 : 1'b1;
+assign n_iorqge = (n_m1 && (port_fffd_full || port_bffd || port_b3 || port_bb || port_ff))? 1'b0 : 1'b1;
 assign d =
     ioreq_rd && port_fffd? ad :
     ioreq_rd && port_b3? gs_reg_out :
