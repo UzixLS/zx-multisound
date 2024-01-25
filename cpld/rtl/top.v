@@ -117,7 +117,7 @@ always @(posedge clk32 or negedge rst_n) begin
         fm2_ena <= 0;
     end
     else if (port_fffd && ioreq_wr && d[7:4] == 4'b1111) begin
-        ym_chip_sel <= ~d[0];
+        ym_chip_sel <= d[0];
         ym_get_stat <= ~d[1];
         fm1_ena <= d[2]? 1'b0 : 1'bz;
         fm2_ena <= d[2]? 1'b0 : 1'bz;
