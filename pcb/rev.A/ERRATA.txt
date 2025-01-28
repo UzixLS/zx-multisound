@@ -5,3 +5,7 @@
 UPD. 2023-08-21:
 4. R20 and R34 labels on silkscreen are misplaced
 5. Incorrect 3.5mm jack footprint - left-right signals are swapped
+
+UPD. 2025-01-28:
+6. U21 should be 74AHCT1G125DB
+7. Missing Z80 clock buffering. CPLD produce only up to 3.3V clock, while Z80 require 5V amplitude, and that may lead to unstable GS work. It's possible to use U14 for clock buffering.
