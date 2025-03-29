@@ -18,7 +18,14 @@ Sound card for ZX Spectrum (NemoBus).
 ### Changelog & current status
 * Rev.A - first release. Please note the [errata](pcb/rev.A/ERRATA.txt);
 * Rev.A1 - fixed known rev.A issues. Please note the [errata](pcb/rev.A1/ERRATA.txt).
-
+* Rev.A2:
+    * Fixed Z80 clocking - added buffer;
+    * Fixed 3.5mm jack footprint swapped left-right channels;
+    * Fixed misplaced R20 and R34 labels on silkscreen;
+    * 74LVC1G125DB replaced by 74AHCT1G125DB;
+    * C3,C5,C17,C18 slightly moved left;
+    * Added ledge on edge connector;
+    * Improved SAM2695 footprint for hand soldering.
 Sound card has been tested only with ZX Evolution. You can use it with another computer at your own risk.
 
 ### Related projects
