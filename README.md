@@ -1,9 +1,9 @@
 ## ZX-MultiSound
 Sound card for ZX Spectrum (NemoBus).
 
-[![photo](images/revA.small.webp)](images/revA.webp?raw=true)
+[![photo](images/revA.small.webp)](images/revA.webp)
 
-[![photo](images/revA-side.small.webp)](images/revA-side.webp?raw=true)
+[![photo](images/revA-side.small.webp)](images/revA-side.webp)
 
 ### Tech specs
 * TurboSound FM (2xYM2203)
